@@ -10,6 +10,6 @@ I am index.md
 
 <ul class="posts">
 	{% for post in site.posts %}
-		<li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.title }}">My First Blog</a>
+		<li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">My First Blog</a>
 	{% endfor %}
 </ul>
