@@ -2,11 +2,11 @@
 layout: default
 title: 我的Blog
 ---
-
+<h2>{{ page.title }}</h2>
 
 # a header
 
-I am index.md
+I am index.md markdown
 <p><br /><b>最新文章:</b></p>
 
 <ul class="posts">
