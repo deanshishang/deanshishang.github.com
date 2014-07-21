@@ -1,16 +1,10 @@
 ---
 layout: default
-title: 我的Blog
+title: 善者不辨
 ---
-<h2>{{ page.title }}</h2>
-
-# a header
-
-I am index.md markdown
-<p><br /><b>...最新文章:</b></p>
 
 <ul class="posts">
 	{% for post in site.posts %}
-		<li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.baseurl }}{{ post.url }}">{{ post.title }}</a>
+		<li><p class="date" cate="{{ post.categories }}">{{ post.date | date:"%Y-%m-%d" }}</p> <a href="{{ post.url }}">{{ post.title }}</a></li>
 	{% endfor %}
 </ul>
