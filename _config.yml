@@ -1,2 +1,2 @@
-markdown: kramdown
-pygments: true
+markdown: rdiscount
+highlighter: pygments
