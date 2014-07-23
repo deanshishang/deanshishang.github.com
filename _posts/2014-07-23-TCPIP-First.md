@@ -74,7 +74,10 @@ category: Note
 
 ### 网络的构成要素：
 介绍连接计算机与计算机的硬件设备。
-<img src="image/bg.png" />
+
+<img src="/image/bg.png" />
+
 test
+
 ![](/image/bg.png)
 dean
