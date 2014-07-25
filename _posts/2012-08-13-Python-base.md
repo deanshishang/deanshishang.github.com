@@ -1,6 +1,6 @@
 ---
 layout: post
-titile: Python整理
+title: Python整理
 catogery: Note
 ---
 
