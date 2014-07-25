@@ -15,7 +15,9 @@ category: Note
 * 空类型：void ;
 
 * int   short long                     三种整型;
+
    |      |     |
+
   4byte 2byte (32bit 4byte；64bit 4byte）
 
 #### tag 知识点
@@ -63,7 +65,9 @@ category: Note
 * 编程中注意速度避免用除法 乘法可以;
 
 * 逻辑运算符 支持短路运算（short circuit）;
+
      |
+
   char *who;
 
   (strcmp(who,"root")!=0)&&(printf("you are not root"));
@@ -71,7 +75,9 @@ category: Note
   等同于 if(strcmp(who,"root")!=0){printf("you are not root")};
 
 * 隐式类型转换-->自动统一到下一个类型进行运算 小类型转换成大类型 保持精度;
-   |
+ 
+  |
+
   char-->short-->int -->unsigned int -->long-->double<--float;
 
 ### 数组与字符串
@@ -108,9 +114,10 @@ category: Note
 * 字符串：特殊的字符数组；多了一个结束标记“\0”，字符串首地址开始到“\0”之间的内容。例如五个字符的串是六个字节。
 
 * 字符串的初始化：
-** char buf[1024]="hello";前5个是hello第六个是\0，以后的也都是“\0”。char buf[5]="hello";是错误的 六个字节。
 
-** int a[10];
+	** char buf[1024]="hello";前5个是hello第六个是\0，以后的也都是“\0”。char buf[5]="hello";是错误的 六个字节。
+
+ ** int a[10];
 
 ** sizeof(a),求取字节数为40。
 
