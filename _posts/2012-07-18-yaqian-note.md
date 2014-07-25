@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 嵌入式课堂小结
+title: 嵌入式C语言编程
 category: Note
 ---
 
