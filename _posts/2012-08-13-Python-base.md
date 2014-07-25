@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python整理
-catogery: Note
+category: Lang
 ---
 
 本文之前是按天积累的，顺序有点混乱，并且内容不是很全，都是挤出点，从某度我的个人空间记录的：
