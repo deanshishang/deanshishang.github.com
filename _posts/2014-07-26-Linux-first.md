@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <Linux内核设计与实现>之内核
+title: Linux内核设计与实现之内核
 category: Note
 ---
 
