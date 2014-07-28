@@ -4,7 +4,7 @@ title: 内存和Flash的区别
 category: Tag
 ---
 
-ROM与RAM都是半导体存储器；
+* ROM与RAM都是半导体存储器；
 
 * Rom是Read Only Menory的缩写，一旦存储就无法将之改变；
 
