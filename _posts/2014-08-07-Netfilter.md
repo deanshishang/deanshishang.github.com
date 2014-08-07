@@ -65,6 +65,18 @@ redirects are also commonly known as port forwarding and virtual servers.(重定
 ![](/image/iptables4.png)
 
 
+### iptbles的动作
+
+* ACCEPT 一旦包满足了制定的匹配条件，就会被ACCEPT，并且不会再去匹配当前链中得其他规则或者同一个表内的其他规则，但是它还是要通过其他表中的链；
+
+* DROP 如果包含符合条件，这个target就会把它丢掉，包生命结束，不再往前继续走，包阻塞了，某些情况下，这个target会引起意外的结果，因为不会向发送者返回任何信息，也不会由路由器返回信息，这就可能会使连接的另一方socket因苦等回音而亡；解决这个问题的方法是使用REJECT target；
+
+* REJECT和DROP基本一样，区别在于它除了阻塞包之外，还返回发送者错误信息，此target只能用在INPUT,OUTPUT,FORWARD，和他们的子链里，包含REJECT的链只能被他们调用，否则不能发挥作用，只有一个选项，用来控制返回的错误信息的种类的；
+
+
+
+
 ##### <a href="http://wiki.openwrt.org/zh-cn/doc/uci/firewall?s[]=hotplug">参考文档</a>
+
 
 
