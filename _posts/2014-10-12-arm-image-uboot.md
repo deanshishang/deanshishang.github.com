@@ -1,0 +1,16 @@
+---
+layout: post
+title: arm架构的linux系统操作启动相关
+category: Note
+---
+
+MLO,u-boot.img,uImage:
+MLO是用于SD卡启动所需要的x-loader的映像文件；
+u-boot.img是通用引导程序，引导各类架构的, Universal Boot Loader, uboot的代码，同bootloader一样都有stage1 与 stage2两大部分，依赖于CPU体系结构的代码，是第一步用汇编实现，stage2用C语言来实现，可以实现复杂功能，有更好的可读性与可移植性；
+uImage是压缩过后的内核文件；
+
+Image uImage与zImage区别：
+内核编译之后生成两个文件，一个是image一个是zImage，后者是压缩后的内核，uImage比zImage多了64个字节头，说明内核版本，加载位置，生成时间，大小的信息，uImage是uboot专用的映像文件，将uboot代码下的/tools目录中mkimage文件，拷贝到/usr/local/bin下边，就完成了制作工具，在内核目录下make uImage，成功了便可在目录下发现uImage文件。
+
+
+
