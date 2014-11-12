@@ -120,7 +120,7 @@ chkconfig 是有图形界面的 操作就比较容易了。
 
 ###### 内核->/etc/init/rc-sysinit.conf->[/etc/inittab]-> /etc/init.d/rc -> /etc/rcX.d -> /etc/init.d/rc.local -> /etc/rc.local
 
-#### 其他LINUX系统
+### 其他LINUX系统
 
 其他的文件结构和过程略有不同，整合一下Redhat的centos系统，系统中默认的Init使用的是/etc/inittab文件，读取/etc/rc.sysinit,再根据级别进入/etc/rcX.d，其中/etc/rc.sysinit指向/etc/rc.d/rc.sysinit的链接，/etc/rcX.d是指向/etc/rc.d/rcX.d的链接，/etc/rc.local是指向/etc/rc.d/rc.local的连接，所以启动顺序如下：
 
