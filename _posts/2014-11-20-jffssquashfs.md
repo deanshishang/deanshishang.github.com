@@ -1,8 +1,18 @@
 ---
 layout: post
-title: openwrt使用的文件系统jffs2与squashfs, LZMA
+title: openwrt使用的文件系统jffs2与squashfs, lzma， 文件系统加载分析
 category: openwrt
 ---
+
+open多数选择硬件flash，一般使用jffs2和squash文件系统，前者是可写的，后者是只读的，一般会把jffs2mount到某个目录下，这样就存在目录如/bin就是只读的，某些其他目录是可读写的，这样对文件的操作依赖于文件系统的属性以及路径。
+
+openwrt使用了mini_fo文件系统，从用户的角度看，会觉得整个文件系统都是可写的，用户可以任意增加删减修改，这种文件系统可以认为是squash fs和jffs2的文件系统上实现了一个符号连接，如果用户读取只读文件，则链接到squash文件系统，如果对只读文件进行修改，将修改的文件放到Jffs2文件系统上，并修改链接。如果用户不采用jffs2系统，会使用ramfs这样也可是实现目的，但是重启后就丢失了；
+
+Openwrt启动之后，Linux内核加载squash文件系统，是只读的；
+openwrt在初始化时，会以mini_fo的文件系统类型重新Mount整个文件系统，整个过程在/etc/preinit/的脚本中实现，有一行代码实现：
+
+mount -t mini_fo -o base=/,sto=$1 "mini_fo:$1" /mnt 2>&- && root=/mnt
+
 
 jffs2文件系统格式适合于断电系统，不像FAT那样容易丢失文件，因为路由器都容易突然断电；
 
