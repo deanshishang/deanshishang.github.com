@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ab命令测试
-category: linux
+title: 命令解析之ab
+category: Linux
 ---
 
 ab命令是apache附带的压力测试工具，可模拟各种条件对web服务器发起测试请求，可以在本地web服务器直接测试这样就除去了数据的网络传输时间以及用户pc本地的计算时间
