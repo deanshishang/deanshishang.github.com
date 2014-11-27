@@ -96,3 +96,8 @@ build dir/target 用来存储依赖于指定平台的软件包的编译文件，
 bin 编译完Openwrt的二进制文件生成目录，其中包括sdk uimage uboot dts rootfs 构建一个完整嵌入式系统的二进制文件；
 
 dl 包含所有编译中需要软件的下载目录；
+
+make dirclean 清除掉kernel源码，然后make kernel_menuconfig重新压缩一个原始openwrt kernel;
+目录结构以及大小如下：
+
+![](/image/trunk3.png)
