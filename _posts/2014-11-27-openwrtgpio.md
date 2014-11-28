@@ -1,6 +1,6 @@
 ---
 layout: post
-title：openwrt系统gpio控制
+title: openwrt系统gpio支持
 category: openwrt
 ---
 
