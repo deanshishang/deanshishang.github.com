@@ -130,23 +130,23 @@ openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉
 
 	输入quilt top 可以得到最后一条patch文件；
 
-	![](/image/quilt.png)
+![](/image/quilt.png)
 
 3，修改kernel patch文件
 
 	新增patch文件：
 
-	![](/image/quilt1.png)
+![](/image/quilt1.png)
 
 	此时这个patch就会认为是顶部的patch并且针对kernel的一切修改都会自动diff到这个patch文件中了；
 
 	然后修改文件(上边步骤中的修改Kconfig示范)，并且更新，quilt refresh；
 
-	![](/image/quilt2.png)
+![](/image/quilt2.png)
 
 	这样保存之后把所有修改都添加到这个patch文件中了，可以查看修改内容如下：
 
-	![](/image/quilt3.png)
+![](/image/quilt3.png)
 
 4，同步openwrt将新增的patch文件拷贝到Openwrt，target/linux/ar71xx/patches-XX/针对kernel的修改就不会再丢失了，补丁会再下次解压缩openwrt的源码时候自动打上。
 
