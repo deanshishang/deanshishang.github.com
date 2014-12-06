@@ -28,13 +28,13 @@ flash地址起始：0x000000--0x3fffff
 
 ttl访问flash的地址：0x9f000000--0x9f3fffff
 
-        flash起始地址   TTL起始地址  flash终止地址  TLL终止地址
+    	    flash起始地址   TTL起始地址  flash终止地址  TLL终止地址
 
-uboot   0x000000        0x9f000000   0x01ffff       0x9f01FFFF
+	uboot   0x000000        0x9f000000   0x01ffff       0x9f01FFFF
 
-fw      0x020000        0x9f020000   0x3dffff       0x9f3dffff
+	fw      0x020000        0x9f020000   0x3dffff       0x9f3dffff
 
-art     0x3f0000        0x9f3f0000   0x3fffff       0x9f3fffff
+	art     0x3f0000        0x9f3f0000   0x3fffff       0x9f3fffff
 
 8M flash的：
 
@@ -42,13 +42,13 @@ flash起始地址：0x000000--0x7fffff
 
 ttl访问的flash地址：0x9f000000--0x9f7fffff
 
-        flash起始地址   TTL起始地址  flash终止地址  TLL终止地址
+	        flash起始地址   TTL起始地址  flash终止地址  TLL终止地址
 
-uboot   0x000000        0x9f000000   0x01ffff       0x9f01FFFF
+	uboot   0x000000        0x9f000000   0x01ffff       0x9f01FFFF
 
-fw      0x020000        0x9f020000   0x7dffff       0x9f7dffff
+	fw      0x020000        0x9f020000   0x7dffff       0x9f7dffff
 
-art     0x7f0000        0x9f7f0000   0x7fffff       0x9f7fffff
+	art     0x7f0000        0x9f7f0000   0x7fffff       0x9f7fffff
 
 ##### 刷固件tftp方式
 
