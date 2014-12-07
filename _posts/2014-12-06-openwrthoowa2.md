@@ -29,4 +29,71 @@ category: openwrt
 hexdupm -C /tmp/X.bin 就可以查看分区内容了。
 
 
+##### 系统的文件结构
+
+uboot启动了kernel完成之后，由Kernel加载ROM分区(就是rootfs减去rootfs_data那一部分)；
+
+ROM分区采用的是linux内核支持的squashFS文件系统(一种压缩只读文件)，加载完毕以后挂载到/rom目录，同时也挂载为根文件系统；
+
+系统使用JFFS2文件系统格式化rootfs_data这部分并且将这部分挂载到/overlay目录；
+
+将/overlay挂载为/分区；
+
+将一部分内存挂载为/tmp目录；
+
+到底根文件系统是哪个？Openwrt设计的时候，是overlay透明挂载，首先将/rom挂载为根文件系统，然后再用/overlay覆盖在/之上，这样当文件系统变更修改的时候就是修改/overly中，rom是不改变的；
+
+##### 网络配置
+
+板子中一般是WAN口是eth1,LAN口是eth0，在配置文件/etc/config/network中，一般loopback代表本机自环配置，lan表示LAN口配置，wan表示WAN口配置，switch表示VLAN配置(虚拟局域网)，switch_vlan表示VLAN1的参数；
+
+ifconfig可以查看网络设备，一般有以下类型：
+
+br-lan:虚拟设备，用于lan口设备桥接的，目前路由器普遍将有线路LAN口和WIFI无线接口桥接在一起作为统一的LAN；
+
+lo：虚拟设备，自环设备；
+
+eth0 eth1：可能会划分为VLAN或者WAN口；
+
+wlan0: 实设备，启动了wifi功能以后产生此设备；
+
+pppoe-wan：虚拟设备，在pppoe拨号的时候产生。
+
+命令：
+
+查看br-lan桥接设备： brctl show
+
+查看vlan配置：这里可以看到芯片中支持的网口配置情况，WAN口不在这里，Port 0是到cpu的接口： swconfig dev eth0 show
+
+查看系统的状态日志，执行命令： logread
+
+查看无线状态：opkg install iwinfo     iwinfo
+
+##### 配置WAN口参数
+
+WAN口是用于链接外网的端口，可以被用于配置成多种方式链接外网；
+
+配置文件结构：
+
+config interface "wan"
+option ifname "eth1"
+option proto "协议类型"
+...
+
+协议类型可选参数：
+
+static:静态ip地址；
+
+dhcp:通过外网dhcp服务器获得ip地址；
+
+pppoe:通过pppoe拨号获得ip地址；
+
+pptp:链接远程vpn服务器；
+
+3g:链接3/4G无线电话网络上网；
+
+具体其他配置待续....
+
+
+
 
