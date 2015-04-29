@@ -57,37 +57,37 @@ owners.`
 
 * 创建库
 
- * mysql> `create database mybase;`
+   * mysql> `create database mybase;`
 
- * `Query OK, 1 row affected (0.13 sec)`
+   * `Query OK, 1 row affected (0.13 sec)`
 
 
 * 进入库
 
- * mysql> `use mybase;`
- * `Database changed`
+   * mysql> `use mybase;`
+   * `Database changed`
 
 
 * 创建表
 
- * 语法：
-   * create table 表名(字段，字段属性)
- * mysql>` create table users(userid int, username varchar(20),password varchar(32), primary key(userid));`
+   * 语法：
+      * create table 表名(字段，字段属性)
+   * mysql>` create table users(userid int, username varchar(20),password varchar(32), primary key(userid));`
 
 
 * 新增数据
 
- * 语法：
-   * insert into 表名(字段名，字段名，字段名…) value(字段值，字段值，字段值..)
- * mysql>` insert into users(userid, username, password) value(1, 'mysql', 'mysql');`
+   * 语法：
+      * insert into 表名(字段名，字段名，字段名…) value(字段值，字段值，字段值..)
+   * mysql>` insert into users(userid, username, password) value(1, 'mysql', 'mysql');`
 Query OK, 1 row affected (0.14 sec)
 
 
 * 查询操作
 
- * 语法：
-  * select * from 表名， *代表所有
- * mysql> `select * from users;`
+   * 语法：
+      * select * from 表名， *代表所有
+   * mysql> `select * from users;`
                   
 +--------+----------+----------+
 
@@ -119,14 +119,14 @@ Query OK, 1 row affected (0.14 sec)
 
 * 修改数据
 
- * 更新过程中, 除非有需求, 最好都要带上where条件, 特别是运行中的项目, 还有就是, 修改删除数据的时候, 最好能够备份一下数据库, 在重要的时候；
+    * 更新过程中, 除非有需求, 最好都要带上where条件, 特别是运行中的项目, 还有就是, 修改删除数据的时候, 最好能够备份一下数据库, 在重要的时候；
 
- * 语法:
-   * update 表名 set 字段=字段值 where 字段=字段值
+    * 语法:
+        * update 表名 set 字段=字段值 where 字段=字段值
    
- * mysql> `update users set password = 'password' where userid = 1;` Query OK, 1 row affected (0.09 sec) Rows matched: 1  Changed: 1  Warnings: 0
+    * mysql> `update users set password = 'password' where userid = 1;` Query OK, 1 row affected (0.09 sec) Rows matched: 1  Changed: 1  Warnings: 0
   
-  * mysql>` select * from users;`
+    * mysql>` select * from users;`
                   
 +--------+----------+----------+
 
@@ -143,13 +143,13 @@ Query OK, 1 row affected (0.14 sec)
 
 * 删除数据
 
- * 在删除数据的时候, 最好能够带上where条件, 即使是没有条件, 这样养成一个好习惯. 对以后写代码有很大的好处.;
+    * 在删除数据的时候, 最好能够带上where条件, 即使是没有条件, 这样养成一个好习惯. 对以后写代码有很大的好处.;
 
- * 语法：
-   * mysql> `delete from users where userid = 1;`
+    * 语法：
+        * mysql> `delete from users where userid = 1;`
 Query OK, 1 row affected (0.05 sec)
 
-   * mysql> `select * from users;`
+    * mysql> `select * from users;`
 Empty set (0.00 sec)
 
 
@@ -273,7 +273,7 @@ Empty set (0.00 sec)
 #### 导出数据
 
 * 把数据库mybase导出到文件shang 中：
-  * dean@Erya:~$` mysqldump -uroot -perya --databases mybase > shang`
+     * dean@Erya:~$` mysqldump -uroot -perya --databases mybase > shang`
 
 
 
@@ -293,9 +293,9 @@ ERROR 2003 (HY000): Can't connect to MySQL server on '192.168.30.193' (111)
 
 * 不能成功的原因呢可能有三：
    
-   * 防火墙；
-   * my.conf中skip-networking这个参数导致所有的TCP/IP端口没有监听，除了本机以外其他机器都不能连接；
-   * my.conf中bindaddress，有的是bind-address  ，这个参数是指定哪些ip地址被配置，使得mysql服务器只回应哪些ip地址的请求，所以需要把这个参数注释掉;
+     * 防火墙；
+     * my.conf中skip-networking这个参数导致所有的TCP/IP端口没有监听，除了本机以外其他机器都不能连接；
+     * my.conf中bindaddress，有的是bind-address  ，这个参数是指定哪些ip地址被配置，使得mysql服务器只回应哪些ip地址的请求，所以需要把这个参数注释掉;
 
 
 * 此处错误为第2个，修改去掉bind-address参数；
@@ -312,11 +312,11 @@ mysql start/running, process 18809
 
 ####增加新用户
 
-######user1为新增的用户
+* user1为新增的用户
 
-######格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by "密码"
+* 格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by "密码"
 
-######如，增加一个用户user1密码为password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入mysql，然后键入以下命令：
+* 如，增加一个用户user1密码为password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入mysql，然后键入以下命令：
 
 `grant select,insert,update,delete on *.* to user1@localhost Identified by "password1";`
 
