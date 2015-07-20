@@ -23,13 +23,13 @@ category: Note
 >        input                                     output     
 >
 
-```
+`
 	int int main(int argc, char *argv[])
 	{
 
 		return 0;
 	} 
-```	
+`	
 
 
 ###iptables表:
