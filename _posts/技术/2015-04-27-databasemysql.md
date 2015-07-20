@@ -308,9 +308,10 @@ Empty set (0.00 sec)
 远程连接数据库：
 ---
 
-* dean@Erya:~$ `mysql -h192.168.30.193 -uroot -perya`
-ERROR 2003 (HY000): Can't connect to MySQL server on '192.168.30.193' (111)
-
+```
+	dean@Erya:~$ `mysql -h192.168.30.193 -uroot -perya`
+	ERROR 2003 (HY000): Can't connect to MySQL server on '192.168.30.193' (111)
+```
 
 * 不能成功的原因呢可能有三：
    
@@ -323,10 +324,11 @@ ERROR 2003 (HY000): Can't connect to MySQL server on '192.168.30.193' (111)
 
 * 重启服务：
 
-  * dean@Erya:~$ `sudo service mysql restart`
-mysql stop/waiting
-mysql start/running, process 18809
-
+```
+	dean@Erya:~$ `sudo service mysql restart`
+	mysql stop/waiting
+	mysql start/running, process 18809
+```
 
 ---
 
@@ -339,27 +341,32 @@ mysql start/running, process 18809
 
 * 如，增加一个用户user1密码为password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入mysql，然后键入以下命令：
 
-`grant select,insert,update,delete on *.* to user1@localhost Identified by "password1";`
+```
+	`grant select,insert,update,delete on *.* to user1@localhost Identified by "password1";`
+```
 
 * 如果希望该用户能够在任何机器上登陆mysql，则将localhost改为"%"。
-* 如果你不想user1有密码，可以再打一个命令将密码去掉。`grant select,insert,update,delete on mydb.* to user1@localhost identified by "";`
+* 如果你不想user1有密码，可以再打一个命令将密码去掉。
+
+```
+	`grant select,insert,update,delete on mydb.* to user1@localhost identified by "";`
+```
 
 
+```
+	dean@Erya:~$` mysql -h192.168.30.193 -uroot -perya`
+	ERROR 1045 (28000): Access denied for user 'root'@'Erya.lan' (using password: YES)
+```
 
-######dean@Erya:~$` mysql -h192.168.30.193 -uroot -perya`
-ERROR 1045 (28000): Access denied for user 'root'@'Erya.lan' (using password: YES)
+这个错误不知道什么原因。。。。。
 
-* 这个错误不知道什么原因。。。。。
-
-
-######dean@Erya:~$` mysql -h192.168.30.193 -uuser1 -ppassword1`
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 38
-Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)
-
+```
+	dean@Erya:~$` mysql -h192.168.30.193 -uuser1 -ppassword1`
+	Welcome to the MySQL monitor.  Commands end with ; or \g.
+	Your MySQL connection id is 38
+	Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)
 
 Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -368,10 +375,9 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-
 mysql>
 远程登录成功；
-
+```
 
 
 ---
@@ -379,8 +385,8 @@ mysql>
 
 ####查看数据库所有用户
 
-
- `SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;`
-
+```
+	`SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;`
+```
 
 ---
