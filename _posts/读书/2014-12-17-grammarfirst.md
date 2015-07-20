@@ -2,7 +2,7 @@
 layout: post
 title: 英语魔法师语法笔记
 category: 读书
-tags: Note
+tags: Reading
 keywords:
 description:
 ---
