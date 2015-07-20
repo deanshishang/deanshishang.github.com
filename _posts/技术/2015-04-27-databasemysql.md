@@ -64,16 +64,17 @@ owners.`
 
 * 创建库
 
-   * mysql> `create database mybase;`
-
-   * `Query OK, 1 row affected (0.13 sec)`
-
+```
+   mysql> `create database mybase;`
+   `Query OK, 1 row affected (0.13 sec)`
+```
 
 * 进入库
 
-   * mysql> `use mybase;`
-   * `Database changed`
-
+```
+    mysql> `use mybase;`
+    `Database changed`
+```
 
 * 创建表
 
