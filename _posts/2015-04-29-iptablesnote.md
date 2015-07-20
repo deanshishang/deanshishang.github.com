@@ -14,13 +14,13 @@ category: Note
 
 
 
-
-                             prerouting(DNAT)    router    filter     postrouting
-
-
-
-                               |                                          |
-                             input                                     output     
+>	prerouting(DNAT)    router    filter     postrouting
+>
+>
+>
+>          |                                          |
+> 
+>  		input                                     output     
 
 
 
