@@ -2,7 +2,7 @@
 layout: post
 title: 嵌入式C语言编程
 category: 技术
-tags: Note
+tags: Lang
 keywords:
 description:
 ---

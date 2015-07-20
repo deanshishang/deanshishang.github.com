@@ -2,7 +2,7 @@
 layout: post
 title: 命令解析之ab
 category: 技术
-tags: Linux
+tags: Tig
 keywords:
 description:
 ---
