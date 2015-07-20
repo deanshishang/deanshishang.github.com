@@ -13,15 +13,23 @@ category: Note
 * 内核模块可以注册一个新的规则表(table)，并要求数据包经过指定的规则表，这种数据包选择用于实现数据包过滤表(filter表)，网络地址转换(nat表)，数据报处理表(mangle表)，这三种数据包处理功能都是基于netfilter的钩子函数与IP表，都是相互之间独立的模块，完美的集成到了由netfilter组成的框架中；
 
 
-
+>
 >	prerouting(DNAT)    router    filter     postrouting
 >
 >
 >
 >          |                                          |
 > 
->  		input                                     output     
+>        input                                     output     
+>
 
+```
+	int int main(int argc, char *argv[])
+	{
+
+		return 0;
+	} 
+```	
 
 
 ###iptables表:
