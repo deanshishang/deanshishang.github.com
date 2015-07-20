@@ -8,13 +8,11 @@ description:
 ---
 
 
-# netfilter/iptables 可以对流入或者流出的信息进行细化控制，实现包过滤功能的应用程序
+### netfilter/iptables 可以对流入或者流出的信息进行细化控制，实现包过滤功能的应用程序
 
 * 包含在2.4以后的内核中，可以实现防火墙，NAT，数据包分割的功能，netfilter包含在内核之中，iptables可以提供用户规则的定制，iptables从ipchains和ipwadfm(IP防火墙管理)演化而来，功能更加强大；
 
-
 * 内核模块可以注册一个新的规则表(table)，并要求数据包经过指定的规则表，这种数据包选择用于实现数据包过滤表(filter表)，网络地址转换(nat表)，数据报处理表(mangle表)，这三种数据包处理功能都是基于netfilter的钩子函数与IP表，都是相互之间独立的模块，完美的集成到了由netfilter组成的框架中；
-
 
 ```
 	prerouting(DNAT)    router    filter     postrouting
@@ -35,7 +33,6 @@ description:
 * `INPUT:` 用于filter表，匹配目的IP是本机的数据包
 * `FORWAD:`用于filter表，匹配穿过本机的数据包
 
-
 * `PREROUTING:` 用于nat表，用来改变目的地址(DNAT)
 * `POSTROUTING：`用于nat表，用来改变源地址(SNAT)
 
@@ -47,7 +44,9 @@ description:
 
 ###iptables语法：
 
+```
 `iptables -t filter/nat <操作命令> [要操作的链] [规则号码] [匹配条件]   [-j 匹配到以后的执行操作]`
+```
 
 ####查看命令：-[nvx]L
 * iptables -L  列出filter表的所有链和规则
