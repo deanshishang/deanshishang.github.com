@@ -7,7 +7,7 @@ keywords:
 description:
 ---
 
-笔记选自：http://www.kuqin.com/shuoit/20141110/343114.html
+笔记选自：[点击](http://www.kuqin.com/shuoit/20141110/343114.html)
 
     以太网的网卡包括OSI的模型两个层，数据链路层(芯片称之为MAC)与物理层(芯片称之为PHY),一般将两块芯片集成到一个芯片当中；
 
