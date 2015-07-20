@@ -43,6 +43,7 @@ description:
 	`Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)`
 ```
 
+```
 `Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.`
 
 
@@ -51,7 +52,7 @@ affiliates. Other names may be trademarks of their respective
 owners.`
 
 `Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.`
-
+```
 
 
 ---
