@@ -8,7 +8,9 @@ description:
 ---
 
 
-### netfilter/iptables 可以对流入或者流出的信息进行细化控制，实现包过滤功能的应用程序
+### netfilter/iptables 
+
+可以对流入或者流出的信息进行细化控制，实现包过滤功能的应用程序
 
 * 包含在2.4以后的内核中，可以实现防火墙，NAT，数据包分割的功能，netfilter包含在内核之中，iptables可以提供用户规则的定制，iptables从ipchains和ipwadfm(IP防火墙管理)演化而来，功能更加强大；
 
