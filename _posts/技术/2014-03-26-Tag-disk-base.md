@@ -2,7 +2,7 @@
 layout: post
 title: 磁盘,闪存小知识
 category: 技术
-tags: Tag
+tags: Tig
 keywords:
 description:
 ---

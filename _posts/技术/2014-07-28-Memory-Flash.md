@@ -2,7 +2,7 @@
 layout: post
 title: 内存和Flash的区别
 category: 技术
-tags: Tag
+tags: Tig
 keywords:
 description:
 ---
