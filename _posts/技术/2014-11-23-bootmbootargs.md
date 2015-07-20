@@ -1,7 +1,10 @@
 ---
 layout: post
 title: bootm,bootargs,bootcmd等Uboot环境变量
-category: Linux
+category: 技术
+tags: Linux
+keywords:
+description:
 ---
 
 Uboot的环境变量：
