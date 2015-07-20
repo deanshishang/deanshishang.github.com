@@ -4,13 +4,12 @@ markdown: redcarpet
 
 # 作者信息
 author: 
-  name: Anya Lin
-  email: lay.1010@hotmail.com
-  link: http://painterlin.com
-  weibo: http://weibo.com/orangeissweet
-  github: http://github.com/lay1010
-  music: http://site.douban.com/linanya
-  linkedin: https://www.linkedin.com/pub/anya-lin/81/91/232
+  name: Shang Shi
+  email: wenjiashe@126.com 
+  link: dean-shi.com
+  weibo: http://weibo.com/deanshishang
+  github: https://github.com/deanshishang
+  music: http://site.douban.com/deanshishang
 
 # 站点信息
 title: 石尚博客
