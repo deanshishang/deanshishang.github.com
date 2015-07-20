@@ -80,50 +80,53 @@ owners.`
 
    * 语法：
       * create table 表名(字段，字段属性)
-   * mysql>` create table users(userid int, username varchar(20),password varchar(32), primary key(userid));`
-
+```
+	mysql>` create table users(userid int, username varchar(20),password varchar(32), primary key(userid));`
+```
 
 * 新增数据
 
    * 语法：
       * insert into 表名(字段名，字段名，字段名…) value(字段值，字段值，字段值..)
-   * mysql>` insert into users(userid, username, password) value(1, 'mysql', 'mysql');`
-Query OK, 1 row affected (0.14 sec)
-
+```   
+	mysql>` insert into users(userid, username, password) value(1, 'mysql', 'mysql');`
+	Query OK, 1 row affected (0.14 sec)
+```
 
 * 查询操作
 
    * 语法：
       * select * from 表名， *代表所有
-   * mysql> `select * from users;`
+```
+    mysql> `select * from users;`
                   
-+--------+----------+----------+
+	+--------+----------+----------+
 
-| userid | username | password |
+	| userid | username | password |
 
-+--------+----------+----------+
+	+--------+----------+----------+
 
-|      1 | mysql    | mysql    |
+	|      1 | mysql    | mysql    |
 
-+--------+----------+----------+
+	+--------+----------+----------+
 
-1 row in set (0.04 sec)
-
-
- * mysql> `select userid from users;`
+	1 row in set (0.04 sec)
+```
+```
+	mysql> `select userid from users;`
  
-+--------+
+	+--------+
 
-| userid |
+	| userid |
 
-+--------+
+	+--------+
 
-|      1 |
+	|      1 |
 
-+--------+
+	+--------+
 
-1 row in set (0.00 sec)
-
+	1 row in set (0.00 sec)
+```
 
 * 修改数据
 
@@ -131,23 +134,23 @@ Query OK, 1 row affected (0.14 sec)
 
     * 语法:
         * update 表名 set 字段=字段值 where 字段=字段值
-   
-    * mysql> `update users set password = 'password' where userid = 1;` Query OK, 1 row affected (0.09 sec) Rows matched: 1  Changed: 1  Warnings: 0
+```   
+	mysql> `update users set password = 'password' where userid = 1;` Query OK, 1 row affected (0.09 sec) Rows matched: 1  Changed: 1  Warnings: 0
   
-    * mysql>` select * from users;`
+    mysql>` select * from users;`
                   
-+--------+----------+----------+
+	+--------+----------+----------+
 
-| userid | username | password |
+	| userid | username | password |
 
-+--------+----------+----------+
+	+--------+----------+----------+
 
-|      1 | mysql    | password |
+	|      1 | mysql    | password |
 
-+--------+----------+----------+
+	+--------+----------+----------+
 
-1 row in set (0.00 sec)
-
+	1 row in set (0.00 sec)
+```
 
 * 删除数据
 
@@ -155,11 +158,11 @@ Query OK, 1 row affected (0.14 sec)
 
     * 语法：
         * mysql> `delete from users where userid = 1;`
-Query OK, 1 row affected (0.05 sec)
-
-    * mysql> `select * from users;`
-Empty set (0.00 sec)
-
+		Query OK, 1 row affected (0.05 sec)
+```
+    mysql> `select * from users;`
+	Empty set (0.00 sec)
+```
 
 查看数据库列表：
 
