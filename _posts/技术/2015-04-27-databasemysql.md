@@ -291,8 +291,10 @@ Empty set (0.00 sec)
 #### 导出数据
 
 * 把数据库mybase导出到文件shang 中：
-     * dean@Erya:~$` mysqldump -uroot -perya --databases mybase > shang`
 
+```
+	dean@Erya:~$` mysqldump -uroot -perya --databases mybase > shang`
+```
 
 
 #### 导入数据
@@ -363,17 +365,16 @@ Empty set (0.00 sec)
 	Your MySQL connection id is 38
 	Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)
 
-Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+	Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+	Oracle is a registered trademark of Oracle Corporation and/or its
+	affiliates. Other names may be trademarks of their respective
+	owners.
 
+	Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
-远程登录成功；
+	mysql>
+	远程登录成功；
 ```
 
 
