@@ -27,18 +27,21 @@ description:
 
 ####测试系统ubuntu：
 
-dean@Erya:~$` id mysql`
+```
+	dean@Erya:~$` id mysql`
 
- `uid=119(mysql) gid=128(mysql) 组=128(mysql)` 
-
+ 	`uid=119(mysql) gid=128(mysql) 组=128(mysql)` 
+```
 
 ####登录
 
-dean@Erya:~$ `mysql -uroot -perya`
-`Welcome to the MySQL monitor.  Commands end with ; or \g.`
-`Your MySQL connection id is 74`
-`Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)`
 
+```
+	dean@Erya:~$ `mysql -uroot -perya`
+	`Welcome to the MySQL monitor.  Commands end with ; or \g.`
+	`Your MySQL connection id is 74`
+	`Server version: 5.5.41-0ubuntu0.12.04.1 (Ubuntu)`
+```
 
 `Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.`
 
