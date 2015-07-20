@@ -160,7 +160,6 @@ description:
 
     * 语法：
         * mysql> `delete from users where userid = 1;`
-		Query OK, 1 row affected (0.05 sec)
 
 ```
     mysql> `select * from users;`
