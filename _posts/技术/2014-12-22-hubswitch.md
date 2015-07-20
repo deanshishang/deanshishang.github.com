@@ -2,7 +2,7 @@
 layout: post
 title: 集线器(hub)与交换机的区别
 category: 技术
-tags: Note
+tags: Tig
 keywords:
 description:
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Nor flash, Nand flash, SPI flash, SDRAM对比
 category: 技术
-tags: Note
+tags: Tig
 keywords:
 description:
 ---
