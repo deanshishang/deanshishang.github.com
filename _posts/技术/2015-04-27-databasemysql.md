@@ -80,6 +80,7 @@ owners.`
 
    * 语法：
       * create table 表名(字段，字段属性)
+
 ```
 	mysql>` create table users(userid int, username varchar(20),password varchar(32), primary key(userid));`
 ```
@@ -88,6 +89,7 @@ owners.`
 
    * 语法：
       * insert into 表名(字段名，字段名，字段名…) value(字段值，字段值，字段值..)
+
 ```   
 	mysql>` insert into users(userid, username, password) value(1, 'mysql', 'mysql');`
 	Query OK, 1 row affected (0.14 sec)
@@ -97,6 +99,7 @@ owners.`
 
    * 语法：
       * select * from 表名， *代表所有
+
 ```
     mysql> `select * from users;`
                   
@@ -112,6 +115,7 @@ owners.`
 
 	1 row in set (0.04 sec)
 ```
+
 ```
 	mysql> `select userid from users;`
  
@@ -134,6 +138,7 @@ owners.`
 
     * 语法:
         * update 表名 set 字段=字段值 where 字段=字段值
+
 ```   
 	mysql> `update users set password = 'password' where userid = 1;` Query OK, 1 row affected (0.09 sec) Rows matched: 1  Changed: 1  Warnings: 0
   
@@ -159,6 +164,7 @@ owners.`
     * 语法：
         * mysql> `delete from users where userid = 1;`
 		Query OK, 1 row affected (0.05 sec)
+
 ```
     mysql> `select * from users;`
 	Empty set (0.00 sec)
@@ -166,6 +172,7 @@ owners.`
 
 查看数据库列表：
 
+```
 mysql> `show databases;`
 
 +--------------------+
@@ -187,7 +194,7 @@ mysql> `show databases;`
 +--------------------+
 
 5 rows in set (0.00 sec)
-
+```
 
 
 ---
@@ -196,6 +203,7 @@ mysql> `show databases;`
 
 ####查询库中的数据表：
 
+```
 mysql> `use mybase`
 
 Reading table information for completion of table and column names
@@ -218,11 +226,12 @@ mysql>` show tables;`
 +------------------+
 
 1 row in set (0.00 sec)
-
+```
 
 
 ####查看表结构：
 
+```
 mysql> `describe users;`
 
 +----------+-------------+------+-----+---------+-------+
@@ -240,7 +249,7 @@ mysql> `describe users;`
 +----------+-------------+------+-----+---------+-------+
 
 3 rows in set (0.00 sec)
-
+```
 
 
 ####建库与删库
@@ -256,6 +265,7 @@ mysql> `describe users;`
 
 #### 查看与清空表中记录
 
+```
 mysql>` select * from users;`
 
 +--------+----------+----------+
@@ -278,7 +288,7 @@ Query OK, 1 row affected (0.06 sec)
 
 mysql>` select * from users;`
 Empty set (0.00 sec)
-
+```
 
 
 #### 导出数据
