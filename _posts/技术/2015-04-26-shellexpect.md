@@ -759,7 +759,7 @@ dean@Erya:~/SHELL$ head -n4 test.txt | awk -F'.' '{{tot+=$3}};END {print tot}'  
 
      * 打印文档全部内容 
 
-	 ``
+	 ```
 	 awk '{print $0}' test.txt   $0整行
      ```
 
@@ -1164,7 +1164,12 @@ ab
 #### 网络截图
 
 ![](/image/regex1.png)
+
 ![](/image/regex2.png)
+
 ![](/image/regex3.png)
+
 ![](/image/regex4.png)
+
 ![](/image/regex5.png)
+
