@@ -303,347 +303,198 @@ x
 
 * sort
 
+```
 dean@Erya:~/SHELL$ cat c.txt
-
 d
-
 d
-
 g
-
 c
-
 a
-
 b
-
 c
-
 d
-
 e
-
 f
-
 g
-
 h
-
 g
-
 f
 
 dean@Erya:~/SHELL$ cat c.txt |sort
-
 a
-
 b
-
 c
-
 c
-
 d
-
 d
-
 d
-
 e
-
 f
-
 f
-
 g
-
 g
-
 g
-
-
 h
 
 dean@Erya:~/SHELL$ cat c.txt |sort -u   去重复
-
 a
-
-
 b
-
 c
-
 d
-
 e
-
 f
-
 g
-
 h
 
 dean@Erya:~/SHELL$ cat c.txt |sort -u -r  反序
-
 h
-
 g
-
 e
-
 d
-
 c
-
 b
-
 a
 
-
 dean@Erya:~/SHELL$ cat n.txt
-
 1
-
 2
-
 3
-
 10
-
 3
-
 2
-
 34
 
-dean@Erya:~/SHELL$ cat n.txt |sort -u         
-
+dean@Erya:~/SHELL$ cat n.txt |sort -u 从第一列开始排序       
 1
-
 10
-
 2
-
 3
-
 34
 
 dean@Erya:~/SHELL$ cat n.txt |sort -u -n  以数值排序
-
 1
-
 2
-
 3
-
 10
-
 34
-
-
-
+```
 
 * wc
     * 统计行数-l
     * 统计字符数-m 
     * 统计词数-w
 
-
 * uniq
 
     * 取唯一，配合sort用
     
+```
 dean@Erya:~/SHELL$ cat x.txt
-
 ashag
-
 1
-
-
 1
-
 1
-
 1
-
 1
-
-
 1
-
 a
-
 abc/shi abc abc
-
 ab
-
 23
-
 111
-
 2o3
-
 rotshishangtet:bash
-
 
 dean@Erya:~/SHELL$ sort x.txt |uniq -c
-
 1
-
 6 1
-
 1 111
-
 1 23
-
 1 2o3
-
 1 a
- 
 1 ab
-
 1 abc/shi abc abc
-
 1 ashag
-
 1 rotshishangtet:bash
+```
 
+* tee
 
-6,tee
-
-
-
-dean@Erya:~/SHELL$ cat x.txt
-
-ashag
-
-1
-
-1
-
-1
-
-1
-
-1
-
-1
-
-a
-
-
-abc/shi abc abc
-
-ab
-
-
-23
-
-111
-
-2o3
-
-rotshishangtet:bash
-
+```
+localhost:shell Dean$ who
+Dean     console  Jul 27 09:06
+You have new mail in /var/mail/Dean
+localhost:shell Dean$ who |tee who.out
+Dean     console  Jul 27 09:06
+localhost:shell Dean$ cat who.out
+Dean     console  Jul 27 09:06
+```
 
 * tr
 
      * 替换字符，常用来处理文档中出现的特殊符号，常用是转换大小写 tr 'a-z' 'A-Z'
 
-
-
 * split
 
-
+```
 dean@Erya:~/SHELL$ split -b 500 passwd passwd    -b 依据大小切割文档
-
 dean@Erya:~/SHELL$ ls passwd*
-
 passwd  passwdaa  passwdab  passwdac  passwdad
-
 dean@Erya:~/SHELL$ cat passwdab |wc -m
-
 500
-
 dean@Erya:~/SHELL$ cat passwdad |wc -m
-
 464
 
-
-
 dean@Erya:~/SHELL$ split -l 10 passwd passwd    -l 依据行数来切割文档
-
 dean@Erya:~/SHELL$ cat passwdaa |wc -l
-
 10
-
+```
 
 ---
 
 rc.d init.d 软链接
 ---
 
-
+```
 dean@Erya:~$ ls -ld /etc/rc0.d/*
-
 lrwxrwxrwx 1 root root  17  4月  2 22:51 /etc/rc0.d/K09apache2 -> ../init.d/apache2
-
 lrwxrwxrwx 1 root root  29  7月 15  2014 /etc/rc0.d/K10unattended-upgrades -> ../init.d/unattended-upgrades
 
-
-
-
-
 dean@Erya:~$ ls -ld /etc/init.d/*
-
 lrwxrwxrwx 1 root root   21  7月 15  2014 /etc/init.d/acpid -> /lib/init/upstart-job
-
 lrwxrwxrwx 1 root root   21  7月 15  2014 /etc/init.d/anacron -> /lib/init/upstart-job
-
 -rwxr-xr-x 1 root root 7621  2月  7  2012 /etc/init.d/apache2
-
-
+```
 
 * rc*.d都是指向/etc/init.d/ 下的软链接 
 
-
-
-
 * shell脚本不需要编译跑在shell中，是一些命令的集合
-
 
 * sh -x test.sh 
 
      * -x 参数支持查看执行过程
 
-
 * 将test.sh加上可执行权限 即可./test.sh执行脚本
 
-
+```
 dean@Erya:~/SHELL$ chmod u+x test.sh
 
 dean@Erya:~/SHELL$ ls -al test.sh
-
 -rwxrw-r-- 1 dean dean 39  4月 24 10:48 test.sh
 
 dean@Erya:~/SHELL$ ./test.sh
-
 2015年 04月 24日 星期五 11:46:11 CST
-
 Hello World.
 
-
-d=`date +%H:%M:%S`  d后紧跟=符号
+其中：d=`date +%H:%M:%S`  d后紧跟=符号
+```
 
 ---
-
-
 使用expect实现shell自动交互(自动登录脚本)  
 ---
 
-
+```
 * \#!/usr/bin/expect -f                                              --------告诉操作系统使用哪一个shell来执行
-
 
 set server 192.168.30.193 
 
@@ -663,16 +514,16 @@ expect {
 
 }
 
-
 expect "*Last login*" interact                               --------- 执行完成后保持交互状态，把控制权交给控制台，这个时候就可以手工操作了。如果没有这一句登录完成后会退出，而不是留在远程终端上。
-
-
+```
 
 * 如果是登录过去执行命令则在最后添加　　
 
+```
 expect elf 
 
 exit
+```
 
 ---
 
