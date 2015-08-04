@@ -32,9 +32,11 @@ description:
 ###iptables链:
 
 * `INPUT:` 用于filter表，匹配目的IP是本机的数据包
+
 * `FORWAD:`用于filter表，匹配穿过本机的数据包
 
 * `PREROUTING:` 用于nat表，用来改变目的地址(DNAT)
+
 * `POSTROUTING：`用于nat表，用来改变源地址(SNAT)
 
 ###Forward链、Input链和Output链的区别如下：
