@@ -530,185 +530,131 @@ exit
 SHELL脚本中
 ---
 
-
-
+```
 sh test.sh     1    2
 
      |         |     |
        
      $0        $1 $2
+``
 
-
+```
 dean@Erya:~/SHELL$ cat 1.sh
  
- \#!/bin/bash
+\#!/bin/bash
 
 echo "\$! is $!"
-
 echo "\$# is $#"
-
 echo "\$* is $*"
-
 echo "\$@ is $@"
-
 echo "\$$ is $$"
-
 echo "\$? is $?"
-
 echo "\$0 is $0"
-
 echo "\$1 is $1"
-
 echo "\$2 is $2"
 
-
 dean@Erya:~/SHELL$ sh 1.sh 1 2 3 4 5 6 shi shang "test 3"
-
 $! is                                                           ----------Shell最后运行的process的PID   ???
-
 $# is 9                                                       ----------参数个数
-
-$* is 1 2 3 4 5 6 shi shang test 3              ----------- $* 所有参数列表 "1 2 3 4 5 6 shi shang "test 3"
-
+$* is 1 2 3 4 5 6 shi shang test 3              ----------- $* 所有参数列表 "1 2 3 4 5 6 shi shang "test 3""
 $@ is 1 2 3 4 5 6 shi shang test 3            ----------- $@ 所有参数列表 "1" "2" "3" "4" "5" "6"  "shi" "shang" "test 3"
-
 $$ is 15409                                               ----------Shell本身的PID
-
 $? is 0                                                       ---------- 最后运行的命令结束代码
-
 $0 is 1.sh                                                  ----------  脚本名字本身
-
 $1 is 1
-
 $2 is 2
-
-
-
+```
 
 * shift 参数
+
      * 位置参数可以用shift命令左移。比如shift 3表示原来的$4现在变成$1，原来的$5现在变成$2等等，原来的$1、$2、$3丢弃，$0不移动。不带参数的shift命令相当于shift 1。
 
 
+* 其它:
+	
+	* [ -lt 1 ]    小于
+
+	* [ -le 1 ]   小于等于
+
+	* [ -ge 1 ]  大于等于
+
+	* [ -gt 1 ]   大于
+
+	* [ -eq 1 ]   等于
+
+	* [ -ne 1 ]   不等于
+
+	* -e filename 文件或者目录是否存在
+
+	* -d /home 判断是不是目录并是否存在
+
+	* -f filename 判断是不是普通文件并是否存在
+
+	* -r w x 判断是否有读写执行权限
 
 
+	* read  读
 
-[ -lt 1 ]    小于
-
-[ -le 1 ]   小于等于
-
-[ -ge 1 ]  大于等于
-
-[ -gt 1 ]   大于
-
-
-[ -eq 1 ]   等于
-
-[ -ne 1 ]   不等于
-
-
--e filename 文件或者目录是否存在
-
--d /home 判断是不是目录并是否存在
-
--f filename 判断是不是普通文件并是否存在
-
--r w x 判断是否有读写执行权限
-
-
-read  读
-
-
+```
 read -p "please input a number: " x  类似于echo 但是可以读入x;
+```
 
 
+##### 逻辑判断：
 
-#####逻辑判断：
-
-
+```
 if XXX ; then
-
      XXX
-     
 elif XXX; then
-
      XXX
-     
 else
-
      XXX
-     
 fi
 
-
 case $n in
-
     1)
-    
         echo "the number is odd"
-        
         ;;
-        
     0)
-    
         echo "the number is even"
-        
         ;;
-        
 esac
+```
 
+##### 循环逻辑
 
-
-
-#####循环逻辑
-
-
+```
 for arg in $X; do
-
      XXX
-     
 done
-
 
 while []; do
-
      XXX
-     
 done
-
-
+```
 
 另外你可以把循环条件忽略掉，笔者常常这样写监控脚本。
 
+```
 while :; do
-
 command
-
 done
-
+```
 
 * echo -n "Your choice is " -n 不断行在同一行显示
 
 
-#####函数：
+##### 函数：
 
-
+```
 function sum() {
-
      echo "xxxx"
-     
 }
-
+```
 
 * seq \`1 100\`  1到100序列
 
-
-
 ---
-
-
-
-
-
 正则表达式
 ---
 
