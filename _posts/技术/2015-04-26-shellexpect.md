@@ -20,28 +20,30 @@ description:
 bash的特点：
 ---
 
-* 记录历史命令  history  !!(上一条命令)
+* 记录历史命令  
+
+```
+history 查看历史命令
+```
+
+	```
+	!!(上一条命令)
+	```
+
 
 * 指令与文件名补全(tab)
 
 * 别名 : 可以自定义 格式为 alias 命令别名='具体命令'
 
 ```
-dean@Erya:~/SHELL$` alias`
-
+dean@Erya:~/SHELL$ alias
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 alias egrep='egrep --color=auto'
-
 alias fgrep='fgrep --color=auto'
-
 alias grep='grep --color=auto'
 alias l='ls -CF'
-
 alias la='ls -A'
-
 alias ll='ls -alF'
-
 alias ls='ls --color=auto' 
 ```
 
