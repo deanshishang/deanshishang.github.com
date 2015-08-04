@@ -61,9 +61,8 @@ localhost:shell Dean$ cat file1
 abc
 ```
 
-	* 输入重定向实例
-
 ```
+输入重定向实例
 \#!/bin/sh
 while read line
 do
@@ -119,9 +118,11 @@ _=/usr/bin/env
 
       * 需要在/etc/profile文件最末行加入 “export myname=Aming” 然后运行”source /etc/profile”就可以生效了。此时你再运行bash命令或者直接su - test账户看看。
 
+
 * 只想让当前用户使用该变量
 
      * 需要在用户主目录下的.bashrc文件最后一行加入“export myname=Aming” 然后运行”source .bashrc”就可以生效了。这时候再登录test账户，myname变量则不会生效了。上面用的source命令的作用是，讲目前设定的配置刷新，即不用注销再登录也能生效。
+
 
 * 单引号和双引号的区别：用双引号时不会取消掉里面出现的特殊字符的本身作用（这里的$），而使用单引号则里面的特殊字符全部失去它本身的作用。
 
