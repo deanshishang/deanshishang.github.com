@@ -536,7 +536,7 @@ sh test.sh     1    2
      |         |     |
        
      $0        $1 $2
-``
+```
 
 ```
 dean@Erya:~/SHELL$ cat 1.sh
@@ -569,7 +569,6 @@ $2 is 2
 
      * 位置参数可以用shift命令左移。比如shift 3表示原来的$4现在变成$1，原来的$5现在变成$2等等，原来的$1、$2、$3丢弃，$0不移动。不带参数的shift命令相当于shift 1。
 
-
 * 其它:
 	
 	* [ -lt 1 ]    小于
@@ -591,7 +590,6 @@ $2 is 2
 	* -f filename 判断是不是普通文件并是否存在
 
 	* -r w x 判断是否有读写执行权限
-
 
 	* read  读
 
@@ -658,782 +656,501 @@ function sum() {
 正则表达式
 ---
 
-
-####awk
+#### awk
 
 * 截取某个段：
 
+```
 cat test.txt
-
 192.168.11.11
 
 head -n1 test.txt | awk -F'.' '{print $1}'
-
 192
 
 head -n2 test.txt |awk -F'.' '{print $2"@"$3}'     print可以打印自定义的内容，需要用双引号括起来，比如实例中的"@"
-
-
-
+```
 
 * 匹配字符或者字符串
 
+```
 awk '/shishang521/' test.txt   匹配test.txt中含有shishang521的字符串
 
-
 awk -F'.' '$1~/192/' test.txt 按段匹配，分隔符为'.'第一段中匹配192的字符串，注意~的添加
+```
 
-
+```
 dean@Erya:~/SHELL$ awk -F'.' '/192/ {print $3}' test.txt
-
 111
-
 0
-
 0
-
 1
-
 1
-
-
-awk -F'.' '/192/ {print $3} /0/' test.txt
-
-111
-
-0
-
-192.168.0.222
-
-0
-
-192.168.0.222
-
-1
-
-1
-
-
-
+```
 
 * 条件操作符
 
      * awk中是可以用逻辑符号判断的，比如’==’就是等于，也可以理解为“精确匹配”。另外也有’>’, ‘>=’, ‘<’, ‘<=’, ‘!=’ 等等，值得注意的是，即使$3为数字，awk也不会把它当数字看待，它会认为是一个字符。所以不要妄图去拿$3当数字去和数字做比较。
 
 
-
+```
 dean@Erya:~/SHELL$ awk -F'.' '$3=="0"' test.txt
-
 192.168.0.222
-
 192.168.0.222
 
 dean@Erya:~/SHELL$ awk -F'.' '$3=="111"' test.txt
-
 192.168.111.1
-
 192.168.111.1
 
 dean@Erya:~/SHELL$ cat test.txt | awk -F'.' '$2!=""'      $2!=""  空
-
 192.168.111.1
-
 192.168.0.222
-
 192.168.0.222
-
 192.168.1.111
-
 
 dean@Erya:~/SHELL$ cat test.txt | awk -F'.' '$2!="" && $3!="111"'    逻辑比较
-
 192.168.0.222
-
 192.168.0.222
-
 192.168.1.111
-
 192.168.1.123
-
-
-
-
+```
+```
 dean@Erya:~/SHELL$ awk -F'.' '/192.168.111/ {print NF}' test.txt    NF变量表示被分隔符分开后一共多少段
-
 4
-
 4
-
 4
-
 4
-
 4
-
-
 
 dean@Erya:~/SHELL$ awk -F'.' 'NR<=4 && $3~/111/' test.txt       NR表示行数
-
 192.168.111.1
 
 dean@Erya:~/SHELL$ awk -F'.' 'NR<=4 && $3~/0/' test.txt
-
 192.168.0.222
-
 192.168.0.222
-
+```
 
 * 数学运算
 
+```
 dean@Erya:~/SHELL$ awk -F'.' 'NR<4 && $1="154"' test.txt
-
 154 168 111 1
-
 154 168 0 222
-
 154 168 0 222
-
-
 
 dean@Erya:~/SHELL$ head -n4 test.txt | awk -F'.' '{$3=$2-$1; print $1, $2, $3}'
-
 192 168 -24
-
 192 168 -24
-
 192 168 -24
-
 192 168 -24
-
-
 
 dean@Erya:~/SHELL$ head -n4 test.txt
-
 192.168.111.1
-
 192.168.0.222
-
 192.168.0.222
-
 192.168.1.111
 
 dean@Erya:~/SHELL$ head -n4 test.txt | awk -F'.' '{{tot+=$3}};END {print tot}'     注意括号的使用
-
 112
 
 这里的END要注意一下，表示所有的行都已经执行，这是awk特有的语法，其实awk连同sed都可以写成一个脚本文件，而且有他们特有的语法，在awk中使用if判断、for循环都是可以的，只是笔者认为日常管理工作中没有必要使用那么复杂的语句而已。
-
+```
 
 * 测试
 
-     * 打印文档全部内容  awk '{print $0}' test.txt   $0整行
-     
-     * 用’:’作为分隔符，查找第一段为’root’的行，并把该段的’root’换成’toor’(可以连同sed一起使用)；awk -F':' '$1~/root/' test.txt | sed 's/root/toor/' 
-     
-     * 用’:’作为分隔符，打印最后一段；awk -F':' '{print $NF}' test.txt
-
-     * 用’:’作为分隔符，打印第一段以及最后一段，并且中间用’@’连接 （例如，第一行应该是这样的形式 “root@/bin/bash”；awk -F':' '{print $1"@"$NF}' test.txt
-
-     * 用’:’作为分隔符，把整个文档的第四段相加，求和；awk -F':' '{(sum+=$4)};END {print sum}' test.txt
-
+     * 打印文档全部内容 
+	 ``
+	 awk '{print $0}' test.txt   $0整行
+     ```
+     * 用’:’作为分隔符，查找第一段为’root’的行，并把该段的’root’换成’toor’(可以连同sed一起使用)；
+	 ```
+	 awk -F':' '$1~/root/' test.txt | sed 's/root/toor/' 
+     ```
+     * 用’:’作为分隔符，打印最后一段；
+	 ```
+	 awk -F':' '{print $NF}' test.txt
+	 ```
+     * 用’:’作为分隔符，打印第一段以及最后一段，并且中间用’@’连接 （例如，第一行应该是这样的形式
+	 ```
+	 “root@/bin/bash”；awk -F':' '{print $1"@"$NF}' test.txt
+	 ```
+     * 用’:’作为分隔符，把整个文档的第四段相加，求和；
+	 ```
+	 awk -F':' '{(sum+=$4)};END {print sum}' test.txt
+	 ```
 
 ####grep
 
+* 实现查找功能 但是并不能修改或者替换 行！
 
- * 实现查找功能 但是并不能修改或者替换  行！
+* tr [a-z] [A-Z]  转换小写为大写
 
+* -c  匹配行的数目
 
- * tr [a-z] [A-Z]  转换小写为大写
+* -i   忽略大小写 
 
+* -v  打印出不符合大小写的行
 
--c  匹配行的数目
+* -n  打印出内容所在的行数
 
--i   忽略大小写 
+* -A  后边接数字 打印符合内容的行以及下面几行
 
--v  打印出不符合大小写的行
+* -B  同-A 上面几行
 
--n  打印出内容所在的行数
+* -C  同-B 上面几行与下面几行
 
--A  后边接数字 打印符合内容的行以及下面几行
-
--B  同-A 上面几行
-
--C  同-B 上面几行与下面几行
-
-
+```
 dean@Erya:~/SHELL$ cat x.txt
-
 1
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 23
-
 345
 
 dean@Erya:~/SHELL$ cat test.txt |grep '^[0-9]' x.txt
-
 1
-
 23
-
 111
-
 23
-
 345
 
 dean@Erya:~/SHELL$ cat test.txt |grep '[^0-9]' x.txt
-
 a
-
 abc
-
 ab
 
-
 dean@Erya:~/SHELL$ cat test.txt |grep '[23]' x.txt
-
 23
-
 23
-
 345
-
 
 dean@Erya:~/SHELL$ cat test.txt |grep '[13]' x.txt     只含有1或者3  不是13
-
 1
-
 23
-
 111
-
 23
-
 345
-
-
+```
 
 * 如果要过滤出数字以及大小写字母则要这样写[0-9a-zA-Z]。另外[ ]还有一种形式，就是[^字符] 表示除[ ]内的字符之外的字符。
 
-
-
+```
 dean@Erya:~/SHELL$ cat x.txt
-
 1
-
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 23
-
 345
 
 dean@Erya:~/SHELL$ cat test.txt |grep '^1' x.txt
-
-
+1
 111
 
 dean@Erya:~/SHELL$ cat test.txt |grep '1$' x.txt
-
 1
-
 111
-
+```
 
 * 在正则表达式中，”^”表示行的开始，”$”表示行的结尾，那么空行则表示”^$”,如果你只想筛选出非空行，则可以使用 “grep -v ‘^$’ filename”得到你想要的结果
 
-
-
-
+```
 dean@Erya:~/SHELL$ cat test.txt |grep '^[^a-zA-Z]' x.txt    不以大小写字母开头的行
-
 1
-
 23
-
 111
-
 23
-
 345
-
+```
 
 * “.”表示任意一个字符
 
-
 * “*”表示零个或多个前面的字符
-
-
 
 * ‘.*’表示零个或多个任意字符，空行也包含在内
 
-
-
-
-
+```
 dean@Erya:~/SHELL$ cat test.txt |egrep '1{2}' x.txt
-
 111
 
 dean@Erya:~/SHELL$ cat test.txt |grep '1\{2\}' x.txt
-
 111
 
 dean@Erya:~/SHELL$ cat test.txt |egrep '1\{2\}' x.txt
 
 dean@Erya:~/SHELL$ cat test.txt |grep '1{2}' x.txt
 
+```
 
 * 这里用到了{ }，其内部为数字，表示前面的字符要重复的次数。上例中表示包含有两个o 即’oo’的行。注意，{ }左右都需要加上脱意字符’\’。另外，使用{ }我们还可以表示一个范围的，具体格式是 ‘\{n1,n2\}’其中n1<n2，表示重复n1到n2次前面的字符，n2还可以为空，则表示大于等于n1次。
 
 
-
-
-
+```
 dean@Erya:~/SHELL$ cat test.txt |grep '2*' x.txt      0个或者0个以上前边的字符
-
 1
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
-
+```
+```
 dean@Erya:~/SHELL$ cat test.txt |egrep '2+' x.txt    1个或者1个以上前边的字符       egrep == grep -E
-
 23
-
 2o3
-
 234
-
 23
-
-
-
-dean@Erya:~/SHELL$ cat test.txt |egrep '2?' x.txt    0个或者1个以上前边的字符
-
+```
+```
+dean@Erya:~/SHELL$ cat test.txt |egrep '2?' x.txt    0个或者1个前边的字符
 1
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
+```
 
-
-
+```
 dean@Erya:~/SHELL$ cat test.txt |grep -E 'o|5' x.txt     或 |
-
 2o3
-
 345
 
 dean@Erya:~/SHELL$ cat test.txt |grep -E 'o|5|3' x.txt
-
 23
-
 2o3
-
 234
-
 23
-
 345
-
+```
+```
 dean@Erya:~/SHELL$ cat test.txt |grep -E '(11)+' x.txt   ()表示一个整体  此中为 1个或者1个以上(11)
-
 111
+```
 
 
 ####sed
 
-
 * sed或者awk都是流式编辑器，可以替换或者查找编辑等
-
-
-
 
 * 打印
 
-
+```
 dean@Erya:~/SHELL$ cat x.txt
-
 1
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
 
 dean@Erya:~/SHELL$ sed -n '3'p x.txt           -n 打印第几行  '3'p 第三行
-
 abc
 
 dean@Erya:~/SHELL$ sed -n '2'p x.txt
-
 a
 
-
-
-
 dean@Erya:~/SHELL$ sed -n '2,$'p x.txt    打印第几行到第几行 
-
 a  
-
 abc
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
 
 dean@Erya:~/SHELL$ sed -n '2,5'p x.txt
-
 a
-
 abc
-
 ab
-
 23
 
-
 dean@Erya:~/SHELL$ sed -n '/abc/'p x.txt   打印匹配的行
-
 abc
 
 dean@Erya:~/SHELL$ sed -n '/ab/'p x.txt
-
 abc
-
 ab
 
-
-
-
 dean@Erya:~/SHELL$ sed -n '/^ab/'p x.txt   ^ $同样适用
-
 abc
-
 ab
 
 dean@Erya:~/SHELL$ sed -n '/^a/'p x.txt
-
 a
-
 abc
-
 ab
 
 dean@Erya:~/SHELL$ sed -n '/^1/'p x.txt
-
 1
-
 111
 
 dean@Erya:~/SHELL$ sed -n '/c$/'p x.txt
-
 abc
 
-
-
 dean@Erya:~/SHELL$ sed -e '3'p -n x.txt
-
 abc
 
 dean@Erya:~/SHELL$ sed -e '3'p -e '/23/'p -n x.txt
-
 abc
-
 23
-
 234
-
 23
-
-
-
+```
 
 * 删除
 
+```
 dean@Erya:~/SHELL$ sed '1'd x.txt
-
 a
-
 abc
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
 
 dean@Erya:~/SHELL$ sed '1,3'd x.txt   删除1到3行
-
 ab
-
 23
-
 111
-
 2o3
-
 234
-
 23
-
 345
-
-
-
-
+```
 
 * 替换字符或者字符串
 
-
+```
 dean@Erya:~/SHELL$ cat x.txt
-
 1
-
 a
-
 abc abc abc
-
 ab
-
 23
-
 111
-
 2o3
 
 dean@Erya:~/SHELL$ sed 's/ab/ba/' x.txt   替换匹配ab的行的第一个ab为ba
-
 1
-
 a
-
 bac abc abc
-
 ba
-
 23
-
 111
-
 2o3
 
 dean@Erya:~/SHELL$ sed 's/ab/ba/g' x.txt  加上了g表示 匹配行中ab全部替换为ba
-
 1
-
 a
-
 bac bac bac
-
 ba
-
 23
-
 111
-
 2o3
-
-
-
-
 
 dean@Erya:~/SHELL$ sed 's/[0-9]//g' x.txt   删除所有数字
-
 a
-
 abc abc abc
-
 ab
-
-
 o
-
-
-
+```
+```
 dean@Erya:~/SHELL$ sed 's/^\(rot\)\(.*\)\(bash\)/\3\2\1/' x.txt     替换rot与bash的位置 \3\2\1    修改了对应位置
-
 1
-
 a
-
 abc abc abc
-
 ab
-
 23
-
 111
-
 2o3
-
 bashshishangtet:rot
 
 dean@Erya:~/SHELL$ sed 's/^.*/123&/' x.txt     开头加上123
-
 1231
-
 123a
-
 123abc abc abc
-
 123ab
-
 12323
-
 123111
-
 1232o3
-
 123rotshishangtet:bash
 
 dean@Erya:~/SHELL$ sed 's/^.*/&123/' x.txt  结尾加上123
-
 1123
-
 a123
-
 abc abc abc 123
-
 ab123
-
 23123
-
 111123
-
 2o3123
-
 rotshishangtet:bash123
-
+```
 
 * 如果想直接修改文件，那么直接sed 加上-i参数就可以了
 
-
+```
 dean@Erya:~/SHELL$ sed 's/abc/bac/g' x.txt
-
 1
-
 a
-
 bac/shi bac bac
-
 ab
-
 23
-
 111
-
 2o3
-
 rotshishangtet:bash
 
-
-
-
-
 dean@Erya:~/SHELL$ sed 's#abc/shi#bac/ihs#g' x.txt   注意如果替换的当中有/ 那么直接用#号隔开就可以
-
 1
-
 a
-
 bac/ihs abc abc
-
 ab
-
 23
-
 111
-
 2o3
-
+```
 
 * 例子
 
-     * 把test.txt中第一个单词和最后一个单词调换位置；sed 's/\(^[a-zA-Z][a-zA-Z]*\)\([^a-zA-Z].*\)\([^a-zA-Z]\)\([a-zA-Z][a-zA-Z]*$\)/\4\2\3\1/' test.txt
+     * 把test.txt中第一个单词和最后一个单词调换位置；
+	 ```
+	 sed 's/\(^[a-zA-Z][a-zA-Z]*\)\([^a-zA-Z].*\)\([^a-zA-Z]\)\([^a-zA-Z][a-zA-Z]*$\)/\4\2\3\1/' test.txt
+	 ```
+     * 把test.txt中出现的第一个数字和最后一个单词替换位置；
+	 ```
+	 sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*\)\([^a-zA-Z]\)\([a-zA-Z][a-zA-Z]*$\)#\1\5\3\4\2#' test.txt
+	 ```
+     * 把test.txt 中第一个数字移动到行末尾；
+	 ```
+	 sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*$\)#\1\3\2#' test.txt
+	 ```
 
-     * 把test.txt中出现的第一个数字和最后一个单词替换位置；sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*\)\([^a-zA-Z]\)\([a-zA-Z][a-zA-Z]*$\)#\1\5\3\4\2#' test.txt
 
-     * 把test.txt 中第一个数字移动到行末尾；sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*$\)#\1\3\2#' test.txt
+#### 网络截图
 
-
-
+![](image/regex1.png)
+![](image/regex2.png)
+![](image/regex3.png)
+![](image/regex4.png)
+![](image/regex5.png)
