@@ -146,10 +146,13 @@ dean@Erya:~$ pstree |grep bash
     
     * /etc/bashrc ：这个文件主要预设umask以及PS1。这个PS1就是我们在敲命令时，前面那串字符了
 
+```
 dean@Erya:~$ echo  $PS1
-\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$   \u就是用户，\h 主机名， \W 则是当前目录，\$就是那个’#’了，如果是普通用户则显示为’$’
 
+\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$   
+\u就是用户，\h 主机名， \W 则是当前目录，\$就是那个’#’了，如果是普通用户则显示为’$’
 
+```
 
 * 除了两个系统级别的配置文件外，每个用户的主目录下还有几个这样的隐藏文件：
     * .bash_profile ：定义了用户的个人化路径与环境变量的文件名称。每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次。
@@ -170,7 +173,7 @@ linux中的特殊命令与符号
 *  ?
 一个字符
 
-* # 注释
+* \# 注释
 
 * \
 转义字符 \* 还原成普通字符
@@ -182,19 +185,20 @@ linux中的特殊命令与符号
 
 * $ 变量前边的标识符
 
+```
 dean@Erya:~/SHELL$ ls x.txt test.txt
 test.txt  x.txt
 dean@Erya:~/SHELL$ ls !$     !$表示上条命令中 最后一个执行的，此中为 ls test.txt
 ls test.txt
 test.txt
-
+```
 
 * ; 在一行中运行多个命令用;隔开就行了
 
 
 * &  后台执行命令，调回前台用fg
 
-
+```
 dean@Erya:~$ sleep 100 &
 
 [1] 21494
@@ -231,105 +235,73 @@ dean@Erya:~$ jobs    查看后台运行任务
 dean@Erya:~$ fg 1  根据任务号恢复前台执行
 
 sleep 100
-
+```
 
 
 
 * \> >> 2> 2>>
 
-     * \>取代 >>追加 2>错误重定向错误信息输出路径 2>>错误追加重定向   2>&1 标准信息输出路径指定为错误输出路径输出都在一起 
+     * \>取代;
+	 * >>追加; 
+	 * 2>错误重定向错误信息输出路径;
+	 * 2>>错误追加重定向;
+	 * 2>&1 标准信息输出路径指定为错误输出路径,也就是输出都在一起; 
 
 
-* []  
-中间为字符，表示任意一个其中的字符
+* []  中间为字符，表示任意一个其中的字符
 
-* &&与||
-与或
-
+* &&与|| 与或
 
 * grep
 过滤一个或者多个字符
 
-
 * cut
 
-
+```
 dean@Erya:~/SHELL$ head -n5 passwd
-
 root:x:0:0:root:/root:/bin/bash
-
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-
 bin:x:2:2:bin:/bin:/bin/sh
-
 sys:x:3:3:sys:/dev:/bin/sh
-
 sync:x:4:65534:sync:/bin:/bin/sync
 
 dean@Erya:~/SHELL$ head -n5 passwd |cut -d ':' -f1       -d 指明分隔符  -f指明第几段
-
 root
-
-
 daemon
-
 bin
-
 sys
-
 sync
 
-dean@Erya:~/SHELL$ head -n5 passwd |awk -F':' '{print $1}'
-
+dean@Erya:~/SHELL$ head -n5 passwd |awk -F':' '{print $1}'       -F指定分隔符  print $1打印第一段
 root
-
 daemon
-
 bin
-
 sys
-
 sync
-
 
 dean@Erya:~/SHELL$ head -n5 passwd
-
 root:x:0:0:root:/root:/bin/bash
-
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-
 bin:x:2:2:bin:/bin:/bin/sh
-
 sys:x:3:3:sys:/dev:/bin/sh
-
 sync:x:4:65534:sync:/bin:/bin/sync
 
-dean@Erya:~/SHELL$ head -n5 passwd |cut -c1-5
-
+dean@Erya:~/SHELL$ head -n5 passwd |cut -c1-5       打印第一到第五列
 root:
-
 daemo
-
 bin:x
-
 sys:x
-
 sync:
 
 dean@Erya:~/SHELL$ head -n5 passwd |cut -c5     截取第几个字符
-
 :
-
 o
-
 x
-
 x
-
 :
+```
 
-
-3,sort
+* sort
 
 dean@Erya:~/SHELL$ cat c.txt
 
