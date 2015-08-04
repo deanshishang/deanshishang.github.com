@@ -758,22 +758,31 @@ dean@Erya:~/SHELL$ head -n4 test.txt | awk -F'.' '{{tot+=$3}};END {print tot}'  
 * 测试
 
      * 打印文档全部内容 
+
 	 ``
 	 awk '{print $0}' test.txt   $0整行
      ```
+
      * 用’:’作为分隔符，查找第一段为’root’的行，并把该段的’root’换成’toor’(可以连同sed一起使用)；
+
 	 ```
 	 awk -F':' '$1~/root/' test.txt | sed 's/root/toor/' 
      ```
+
      * 用’:’作为分隔符，打印最后一段；
+
 	 ```
 	 awk -F':' '{print $NF}' test.txt
 	 ```
+
      * 用’:’作为分隔符，打印第一段以及最后一段，并且中间用’@’连接 （例如，第一行应该是这样的形式
+
 	 ```
 	 “root@/bin/bash”；awk -F':' '{print $1"@"$NF}' test.txt
 	 ```
+
      * 用’:’作为分隔符，把整个文档的第四段相加，求和；
+
 	 ```
 	 awk -F':' '{(sum+=$4)};END {print sum}' test.txt
 	 ```
@@ -1134,14 +1143,19 @@ ab
 * 例子
 
      * 把test.txt中第一个单词和最后一个单词调换位置；
+
 	 ```
 	 sed 's/\(^[a-zA-Z][a-zA-Z]*\)\([^a-zA-Z].*\)\([^a-zA-Z]\)\([^a-zA-Z][a-zA-Z]*$\)/\4\2\3\1/' test.txt
 	 ```
+
      * 把test.txt中出现的第一个数字和最后一个单词替换位置；
+
 	 ```
 	 sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*\)\([^a-zA-Z]\)\([a-zA-Z][a-zA-Z]*$\)#\1\5\3\4\2#' test.txt
 	 ```
+
      * 把test.txt 中第一个数字移动到行末尾；
+
 	 ```
 	 sed 's#\([^0-9][^0-9]*\)\([0-9][0-9]*\)\([^0-9].*$\)#\1\3\2#' test.txt
 	 ```
@@ -1149,8 +1163,8 @@ ab
 
 #### 网络截图
 
-![](image/regex1.png)
-![](image/regex2.png)
-![](image/regex3.png)
-![](image/regex4.png)
-![](image/regex5.png)
+![](/image/regex1.png)
+![](/image/regex2.png)
+![](/image/regex3.png)
+![](/image/regex4.png)
+![](/image/regex5.png)
