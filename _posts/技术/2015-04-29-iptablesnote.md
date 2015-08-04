@@ -1,12 +1,11 @@
 ---
 layout: post
-title: 实战之iptables规则说明与使用
+title: iptables规则说明与使用总结
 category: 技术
 tags: Note
 keywords:
 description:
 ---
-
 
 ### netfilter/iptables 
 
@@ -228,7 +227,6 @@ description:
 
 
 
-### 三大“纪律”五项“注意”
 
 ####三大“纪律”——专表专用
 
@@ -236,11 +234,13 @@ description:
  * nat
  * mangle
  
-####五项“注意”——注意数据包的走向 PREROUTING
-
+####五项“注意”——注意数据包的走向 
+ 
+ * PREROUTING
  * INPUT
  * FORWARD
- * OUTPUT POSTROUTING
+ * OUTPUT 
+ * POSTROUTING
  
 ### 其他注意事项
 
