@@ -1,6 +1,6 @@
 ---
 layout: post
-title:SHELL脚本,正则表达式与expect的使用
+title: Shell,正则表达式,expect的使用
 category: 技术
 tags: Note
 keywords:
