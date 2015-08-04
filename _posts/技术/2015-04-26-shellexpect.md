@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 实战之SHELL脚本与正则表达式与expect使用
+title:SHELL脚本,正则表达式与expect的使用
 category: 技术
 tags: Note
 keywords:
@@ -26,6 +26,7 @@ bash的特点：
 
 * 别名 : 可以自定义 格式为 alias 命令别名='具体命令'
 
+```
 dean@Erya:~/SHELL$` alias`
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -42,7 +43,7 @@ alias la='ls -A'
 alias ll='ls -alF'
 
 alias ls='ls --color=auto' 
-
+```
 
 * 通配符
     
