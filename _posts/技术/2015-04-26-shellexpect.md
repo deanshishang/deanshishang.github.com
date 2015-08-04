@@ -63,6 +63,7 @@ abc
 
 ```
 输入重定向实例
+
 \#!/bin/sh
 while read line
 do
