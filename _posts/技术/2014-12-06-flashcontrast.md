@@ -65,6 +65,8 @@ Nor flash 的一种，接口简单，每次传输一个bit位的数据；
 
 	* Nor flash的地址被映射到0x0000_0000中(nGCS0,这里不需要片内SRAM辅助，所以片内SRAM的起始地址还是0x4000_0000)然后CPU从0x0000_0000开始执行(就是在Nor flash中执行)；
 
+<p>
+
 * 为什么有两中启动方式，还是因为两种flash的不同特点造成的，Nor flash容量小，速度快，稳定性好，输入地址，然后给出写信号可从数据口得到数据，适合做程序存储器，nand flash总容量大，但是读写都需要复杂的时序，更适合做数据存储器，这种不同造就了Nor flash可以直接链接到ARM的总线并且可以运行程序，而Nand flash必须搬移到内存(SDRAM)中执行；
 
 * 在路由器的开发中，一般将bootloader烧写到nor flash，程序可以通过串口交互，进行操作，这样方便调试，Nor flash中的bootloader可以烧录内核到Nor flash等等功能；
