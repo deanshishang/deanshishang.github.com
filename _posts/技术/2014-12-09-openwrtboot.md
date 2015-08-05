@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 编译的固件提示You cannot use older JFFS2 filesystems with newer kernels等问题的解决
+title: Bug - 编译的固件提示"You cannot use older JFFS2 filesystems with newer kernels"
 category: 技术
 tags: Openwrt
 keywords:
@@ -9,8 +9,7 @@ description:
 
 最近的一个星期在给新的路由器设备适配openwrt系统，有一个问题困扰了很久，先贴代码：
 
-
-
+```
 [    0.680000] m25p80 spi0.0: found w25q128, expected m25p80
 
 [    0.680000] m25p80 spi0.0: w25q128 (16384 Kbytes)
@@ -100,23 +99,25 @@ j
 [   10.340000] 1f04           16064 mtdblock4  (driver?)
 
 [   10.350000] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(31,2) 
+```
 
 
+按照提示，修改了target/linux/ar71xx/image/Makefile文件，目的是修正spi flash分区信息，本来是8M的flash，我换了一个spi flash为16M的，出现问题的上边代码中，Makefile文件中相关代码是：
 
-我按照提示，修改了target/linux/ar71xx/image/Makefile文件，目的是修正spi flash分区信息，本来是8M的flash，我换了一个spi flash为16M的，出现问题的上边代码中，Makefile文件中相关代码是：
-
-
-
+```
 256K uboot--64K uboot-env--1024K kernel 
+```
 
 问题解决后的相关代码是：
 
+```
 128K uboot--1024K kernel
+```
 
-首先分析，解压内核的步骤是bootm 0x9f020000，每次我cp.b烧写的固件位置都是在这里，出现问题的原因是，我自己makefile的spiflash对应的kernel是从偏移量uboot256K+ubootenv64K也就是0x9f050000开始的，如果我把固件烧写到0x9f020000就不对应spiflash的分区信息了，所以第一如果要是我直接烧写到0x9f050000的话，直接bootm0x9f050000就能启动系统了，但是uboot信息中bootm 默认是0x9f020000，所以我将uboot大小改成了128K（uboot事实上就是这个大小），然后去掉ubootenv，这样spiflash分区信息就与我的设置对应上了；
+** 首先分析，解压内核的步骤是bootm 0x9f020000，每次我cp.b烧写的固件位置都是在这里，出现问题的原因是，我自己makefile的spiflash对应的kernel是从偏移量uboot256K+ubootenv64K也就是0x9f050000开始的，如果我把固件烧写到0x9f020000就不对应spiflash的分区信息了，所以第一如果要是我直接烧写到0x9f050000的话，直接bootm0x9f050000就能启动系统了，但是uboot信息中bootm 默认是0x9f020000，所以我将uboot大小改成了128K（uboot事实上就是这个大小），然后去掉ubootenv，这样spiflash分区信息就与我的设置对应上了；**
 
 至此问题解决！
 
 接下来设备能够启动了，但是总是会重新启动，找不到原因，继续搞！
 
-提示 mount_root jffs2 is not ready - marker found.....
+提示 mount_root jffs2 is not ready - marker found .....
