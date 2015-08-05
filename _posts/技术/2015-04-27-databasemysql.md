@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 总结 - 数据库实例操作说明(mysql)
+title: Summary - 数据库实例操作说明(mysql)
 category: 技术
 tags: Note
 keywords:
