@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 集线器(hub)与交换机的区别
+title: Tig - 集线器(hub)与交换机的区别
 category: 技术
 tags: Tig
 keywords:
