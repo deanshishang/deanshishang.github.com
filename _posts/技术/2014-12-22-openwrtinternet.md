@@ -51,7 +51,9 @@ config wifi-iface
 
 #### 联网实现原理
 
-DD中的*repeater bridge* 联网方式,在openwrt中称为*routed client mode masquerade*,实现原理是这样的：
+**DD中的*repeater bridge* 联网方式,在openwrt中称为*routed client mode masquerade*, 实现原理是这样的：** <br>
+
+<p>
 
 openwrt的网络分为:<br>
 *device --> interface --> network --> zone*
