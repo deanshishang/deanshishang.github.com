@@ -59,6 +59,8 @@ Nor flash 的一种，接口简单，每次传输一个bit位的数据；
 
 	* ARM体系结构大部分设备中，Nand 启动，Nand flash控制器将前4K存储复制到stepping stone（内部SRAM缓冲器）,并吧0x0000_0000设置为内部SRAM的起始地址，CPU从内部SRAM的0x0000_0000开始启动，这个过程不需要程序干涉(CPU自动将nand flash的前4K读取放置在片内SRAM里边s3c2440是soc，同时把这段片内SRAM映射到nGCS0片选的空间(0x0000_0000)。CPU从0x0000_0000开始执行，也就是Nand flash的前4K程序，Nand flash地址线都没有，不能直接把Nand映射到0x0000_0000，只好用片内SRAM做为载体，通过这个载体把Nand flash的大代码复制到RAM(一般是SDRAM)中去执行）。程序员的工作就是制作最核心的代码放在前4K中，要完成S3C2440的核心配置以及启动代码(U-BOOT)的剩余部分拷贝到SDRAM中，这4K的代码需要将NAND flash的内容复制到SDRAM中执行，前4K放启动代码，SDRAM速度快，用来执行主程序的代码，ARM一般从ROM或者Flash启动完成初始化，然后应用程序拷贝到RAM，跳到RAM执行;
 
+<p>
+
 * Nor flash:
 
 	* 支持代码直接放到NOR flash上执行，无需复制到内存当中，这是因为NOR flash的接口与RAM的相同，可以直接随机对内容访问，可以像内存一样操作，但是写擦处效率很低，一般在代码的开始部分汇编指令初始化外部内存部件(SDRAM), 最后跳到外存中继续执行，对于一般的小程序，一般将其放到Nand flash中，借助CPU内部的SRAM直接运行；
