@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 嵌入式C语言编程
+title: Language - 嵌入式C语言编程
 category: 技术
 tags: Lang
 keywords:

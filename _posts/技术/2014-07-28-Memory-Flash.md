@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 内存和Flash的区别
+title: Tig - 内存和Flash的区别
 category: 技术
 tags: Tig
 keywords:

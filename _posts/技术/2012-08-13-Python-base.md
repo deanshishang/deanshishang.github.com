@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python整理
+title: Language - Python整理
 category: 技术
 tags: Lang
 keywords:

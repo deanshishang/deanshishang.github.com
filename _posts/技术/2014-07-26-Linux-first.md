@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux内核设计与实现之内核
+title: Note - Linux内核设计与实现之内核
 category: 技术
 tags: Note
 keywords:
