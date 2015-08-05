@@ -1,15 +1,15 @@
 ---
 layout: post
-title: 命令解析之ab
+title: Command - 命令解析之ab
 category: 技术
 tags: Tig
 keywords:
 description:
 ---
 
-ab命令是apache附带的压力测试工具，可模拟各种条件对web服务器发起测试请求，可以在本地web服务器直接测试这样就除去了数据的网络传输时间以及用户pc本地的计算时间
+**ab命令是apache附带的压力测试工具，可模拟各种条件对web服务器发起测试请求，可以在本地web服务器直接测试这样就除去了数据的网络传输时间以及用户pc本地的计算时间**
 
-
+```
 DeantekiMacBook-Pro:~ Dean$ ab -c 20 -n 1000 www.baidu.com/
 
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
@@ -113,7 +113,7 @@ Percentage of the requests served within a certain time (ms) --> 描述每个请
 	99%   5632
 
 	100%  16703 (longest request)
-
+```
 
 
 * -n 1000 表示总的请求数为1000，本次测试总共要访问页面的次数；

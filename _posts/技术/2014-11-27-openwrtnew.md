@@ -1,19 +1,21 @@
 ---
 layout: post
-title: openwrt添加新的路由器支持以及quilt的使用
+title: Tig - openwrt添加新的路由器支持以及补丁工具quilt 的使用
 category: 技术
 tags: Openwrt
 keywords:
 description:
 ---
 
-手里有厂商提供了一块板子什么信息基本都没有，开始考虑自己新增一个配置到openwrt的列表。
 
-如果想把openwrt移植到列表中没有的路由器上，目标是新增target system platform，先可以增加一个target profile。
+**手里有厂商提供了一块板子什么信息基本都没有，开始考虑自己新增一个配置到openwrt的列表。**
 
-比如说新的路由器名字叫做DEAN-ERYA100配置是AR9341 + nor 16M + ram 64M，ar9341这个平台中即为atheros Ar7XXX/Ar9XXX，要做的就是在Openwrtmenuconfig中加入DEAN-ERYA100的支持。
+如果想把openwrt移植到列表中没有的路由器上，目标是新增target system platform，首先可以增加一个target profile。
 
-1，首先加入Dean-ERYA100的宏定义
+比如说新的路由器名字叫做DEAN-ERYA100 配置是AR9341 + nor 16M + ram 64M，ar9341这个平台中即为atheros Ar7XXX/Ar9XXX，要做的就是在Openwrtmenuconfig中加入DEAN-ERYA100 的支持。
+
+```
+1，首先加入Dean-ERYA100 的宏定义
 tools/firmware-utils/src/mktplinkfw.c
 
 #define HWID_DEAN_ERYA100_V1 0x08100001
@@ -21,7 +23,6 @@ tools/firmware-utils/src/mktplinkfw.c
 
 2，board的属性
 tools/firmware-utils/src/mktplinkfw.c
-
 
 {
 	.id     = "DEAN-ERYA100V1",
@@ -77,9 +78,10 @@ $(eval $(call Profile,DEANERYA100))
 
 ![](/image/new1.png)
 
+```
 
-
-make V=s99 编译之后，bin/ar71xx下生成factory.bin文件，但是这个下载到flash不能启动，因为内核没有支持erya1000，接下来就是 kernel arch machine新增路由器。
+```
+make V=s99 编译之后，bin/ar71xx下生成factory.bin文件，但是这个下载到flash不能启动，因为内核没有支持erya1000，接下来就是 kernel arch machine 新增路由器。
 
 Kernel增加deanerya100的支持
 build_dir/target-mips_34kc_uClibc-0.9.33.2/linux-ar71xx_generic/linux-3.10.58
@@ -108,12 +110,15 @@ obj-$(CONFIG_ATH79_MACH_DEAN_ERYA100)  += mach-dean-erya100.o
 那么问题来了？makeclean之后怎么办，每次重新编译都得手写代码？
 quilt来了，上边的修改都可以合入到target/linux/path-3.XXX下边kernel补丁文件，最好办法是直接修改补丁，添加支持dean-erya100。
 
+```
+
 ### quilt工具的使用
 
-openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉了，下次得重新修改，弄懂quilt使用借助它就可以自动修改和太哪家kernel patch
+openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉了，下次得重新修改，弄懂quilt使用借助它就可以自动修改和添加 kernel patch
 
 1，quilt的安装
 
+```
 	openwrt编译过程自动下载quilt.tar.gz，拷贝到目录下加压缩之后，安装到主机上；修改配置文件：
 	vi ~/.quiltrc
 
@@ -122,7 +127,8 @@ openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉
 	 QUILT_PATCH_OPTS="--unified"
 	 QUILT_DIFF_OPTS="-p"
 	 EDITOR="vim "
-
+```
+```
 2，解压缩kernel
 
 	openwrt下make dirclean,清除掉kernel的源码，然后make kernel_menuconfig重新解压缩一个原始的openwrt kernel;
@@ -134,9 +140,11 @@ openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉
 	输入quilt top 可以得到最后一条patch文件；
 
 ![](/image/quilt.png)
+```
 
 3，修改kernel patch文件
 
+```
 	新增patch文件：
 
 ![](/image/quilt1.png)
@@ -150,7 +158,9 @@ openwrt kernel源码修改，一旦Makeclean之后呢，kernel源码就会删掉
 	这样保存之后把所有修改都添加到这个patch文件中了，可以查看修改内容如下：
 
 ![](/image/quilt3.png)
+```
 
-4，同步openwrt将新增的patch文件拷贝到Openwrt，target/linux/ar71xx/patches-XX/针对kernel的修改就不会再丢失了，补丁会再下次解压缩openwrt的源码时候自动打上。
+4，同步openwrt将新增的patch文件拷贝到Openwrt，target/linux/ar71xx/patches-XX/针对kernel的修改就不会再丢失了，补丁会在下次解压缩openwrt的源码时候自动打上。
 
-可参考一个网上的例子，quilt使用的例子 http://blog.csdn.net/hbsong75/article/details/8825184
+可参考一个网上的例子，quilt使用的例子 
+[quilt](http://blog.csdn.net/hbsong75/article/details/8825184 "quilt的使用")

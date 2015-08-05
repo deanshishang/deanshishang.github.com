@@ -1,6 +1,6 @@
 ---
 layout: post
-title: bootm,bootargs,bootcmd等Uboot环境变量
+title: Tig - bootm,bootargs,bootcmd等Uboot环境变量
 category: 技术
 tags: Linux
 keywords:
