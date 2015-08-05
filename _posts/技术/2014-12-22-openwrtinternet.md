@@ -53,14 +53,15 @@ config wifi-iface
 
 **DD中的*repeater bridge* 联网方式,在openwrt中称为*routed client mode masquerade*, 实现原理是这样的：** <br>
 
-<p>
-
 openwrt的网络分为:<br>
 *device --> interface --> network --> zone*
 
 	* device就是例如无线网卡radio0这种物理设备;
+
 	* interface为例如wlan0这种通过无线网卡驱动虚拟出来的设备接口,这个虚拟出来的接口可以做ap也就是发射无线信号,称为sta(station);
+
 	* network是OpenWRT对于interface的一个分组。比如你有eth1, eth2, eth3, eth4四个独立的有线网卡提供的interface，但是设置了一个bridge把这四个独立的interface桥接到了一起，然后它们都从属于一个network,在network上配置的是对于network内的interface怎么获取ip;
+
 	* zone是OpenWRT为了方便管理iptables 规则建立的更高层次的抽象, zone可以包含一个或者多个network, 定义了iptables 规则是否要在不同zone之间做forward 还是masquerade; masquerade 就是所谓的NAT（NAPT），也就是用一个外网ip 给多个内网客户端提供上外网的服务，每次连接都会分配一个端口用于让连接的下行流量可以映射回内网的客户端;
 
 * 无线连接互联网其实就是有两个zone, 一个叫lan, 一个叫wan; 然后设置了从lan 到wan 的masquerade 规则，这样所有连接到lan的机器都可以通过wan NAT出去。
