@@ -1,6 +1,6 @@
 ---
 layout: post
-title: openwrt 无线连接互联网实现原理
+title: Tig - openwrt 无线连接互联网实现原理
 category: 技术
 tags: Openwrt
 keywords:

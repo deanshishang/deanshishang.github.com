@@ -114,7 +114,7 @@ j
 128K uboot--1024K kernel
 ```
 
-** 首先分析，解压内核的步骤是bootm 0x9f020000，每次我cp.b烧写的固件位置都是在这里，出现问题的原因是，我自己makefile的spiflash对应的kernel是从偏移量uboot256K+ubootenv64K也就是0x9f050000开始的，如果我把固件烧写到0x9f020000就不对应spiflash的分区信息了，所以第一如果要是我直接烧写到0x9f050000的话，直接bootm0x9f050000就能启动系统了，但是uboot信息中bootm 默认是0x9f020000，所以我将uboot大小改成了128K（uboot事实上就是这个大小），然后去掉ubootenv，这样spiflash分区信息就与我的设置对应上了；**
+**首先分析，解压内核的步骤是bootm 0x9f020000，每次我cp.b烧写的固件位置都是在这里，出现问题的原因是，我自己makefile的spiflash对应的kernel是从偏移量uboot256K+ubootenv64K也就是0x9f050000开始的，如果我把固件烧写到0x9f020000就不对应spiflash的分区信息了，所以第一如果要是我直接烧写到0x9f050000的话，直接bootm0x9f050000就能启动系统了，但是uboot信息中bootm 默认是0x9f020000，所以我将uboot大小改成了128K（uboot事实上就是这个大小），然后去掉ubootenv，这样spiflash分区信息就与我的设置对应上了。**
 
 至此问题解决！
 
