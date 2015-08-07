@@ -17,11 +17,8 @@ description:
 
 * 空类型：void ;
 
-* int   short long                     三种整型;
+* int short long  三种整型;
 
-   |      |     |
-
-    4byte 2byte (32bit 4byte；64bit 4byte）
 
 #### tag 知识点
 
@@ -33,11 +30,11 @@ description:
 
 * c89中用long long;
 
-* gcc a.c -o app -sd=c89;
+* gcc a.c -o app -std=c89;
 
-* 运算符：size of()字节数求取；
+* 运算符：size of() 字节数求取；
 
-* typeof()求变量类型的名字；
+* typeof() 求变量类型的名字；
 
 * int-->32bits ;
 
@@ -97,7 +94,7 @@ description:
 * %s：字符串，%c字符
 * %p：专门用来打印地址，pointor
 
-####存储模式
+#### 存储模式
 * 小端法（little-endian）i386体系：高位存高字节，低位存低字节。
 
 * 在编程时用虚拟地址，不是物理地址，内存不够时可以用外存。缺页异常。
