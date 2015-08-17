@@ -10,6 +10,8 @@ description:
 
 ## fedora.repo
 
+
+```
 [fedora]
 name=Fedora $releasever - $basearch
 failovermethod=priority
@@ -39,10 +41,11 @@ enabled=0
 metadata_expire=7d
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
-
+```
 
 ## fedora-updates.repo
 
+```
 [updates]
 name=Fedora $releasever - $basearch - Updates
 failovermethod=priority
@@ -69,9 +72,11 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=updates-released-sour
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
+```
 
 ## fedora-update-testing.repo
 
+```
 [updates-testing]
 name=Fedora $releasever - $basearch - Test Updates
 failovermethod=priority
@@ -98,3 +103,4 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-sourc
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
+```
